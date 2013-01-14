@@ -1,0 +1,3 @@
+[submodule "matchers"]
+	path = matchers
+	url = git@github.com:ferronrsmith/anuglarjs-jasmine-matchers.git

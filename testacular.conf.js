@@ -17,7 +17,7 @@ files = [
   'app/scripts/**/*.js',
 //  'test/mock/**/*.js',
   'test/spec/**/*.js',
-  'test/mods/*.js'
+  'matchers/*.js'
 ];
 
 
@@ -60,9 +60,9 @@ autoWatch = true;
 // - Opera
 // - Safari
 // - PhantomJS
-//browsers = ['PhantomJS'];
+browsers = ['PhantomJS'];
 //browsers = ['Firefox'];
-browsers = ['Chrome'];
+//browsers = ['Chrome'];
 
 
 // Continuous Integration mode
