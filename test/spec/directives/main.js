@@ -1,4 +1,4 @@
-/*global describe, beforeEach, inject, module, angular, document, it, expect, $, navigator */
+/*global describe, beforeEach, inject, module, angular, document, it, expect, $, navigator, window, spyOn */
 describe('Testing OpenCard Directive', function () {
     "use strict";
     var element, compile, scope, rootElement;
@@ -44,15 +44,66 @@ describe('Testing OpenCard Directive', function () {
         expect(element.find('div').click().eq(0).find('img')).toHaveCss(attr);
     });
 
-    it('should ...', function () {
+    it('opacity class should be added after 2 clicks', function () {
         element.find('div').click();
         element.find('div').click();
         expect(element.find('div').eq(0).find('img')).toHaveClass('opacity');
     });
 
-    it('should ...', function () {
-        element.find('div').click();
-        expect(element.find('div').eq(0).find('img')).not.toHaveClass('opacity');
+    it('should increment found if value matches', function () {
+        window.imgopened = 'image/01.jpg';
+        window.found = 9;
+        element.find('div').eq(0).click();
+        expect(window.found).toEqual(10);
     });
 
+    it('should reset imgopened & boxopened after timeout - $browser.defer.flush', inject(function ($timeout, $browser) {
+        window.imgopened = 'image/02.jpg';
+        window.boxopened = element.find('div').eq(1);
+        element.find('div').eq(0).click();
+        expect(window.imgopened).not.toEqual(window.currentopened);
+
+        $browser.defer.flush();
+
+        expect(function () {
+            $browser.defer.flush();
+        }).toThrow('No deferred tasks to be flushed');
+        expect(window.imgopened).toEqual('');
+        expect(window.boxopened).toEqual('');
+    }));
+
+    it('should reset imgopened & boxopened after timeout - $timeout.flush ', inject(function ($timeout, $rootScope) {
+        var applySpy = spyOn($rootScope, '$apply').andCallThrough();
+        window.imgopened = 'image/02.jpg';
+        element.find('div').eq(0).click();
+        expect(window.imgopened).not.toEqual(window.currentopened);
+
+        window.boxopened = element.find('div').eq(1);
+        expect(applySpy).not.toHaveBeenCalled();
+        $timeout.flush();
+
+        expect(applySpy).toHaveBeenCalled();
+        applySpy.reset();
+
+        expect(window.imgopened).toEqual('');
+        expect(window.boxopened).toEqual('');
+    }));
+
+    it('window should be mapped to the global window', inject(function ($window) {
+        // if $window && global window are the same then window.location.reload == $window.location.reload
+        expect($window).toBe(window);
+        expect($window.location.reload).toBe(window.location.reload);
+    }));
+
+    it('should call reset function', inject(function ($compile) {
+        var reset = angular.element('<a class="link" reset-game>Reset</a>');
+
+        $compile(reset)(scope);
+        scope.$apply();
+
+        expect(reset.html()).toEqual('Reset');
+        expect(reset.click().html()).toEqual('Reset');
+
+
+    }));
 });

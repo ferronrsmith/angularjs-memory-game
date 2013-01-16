@@ -29,21 +29,21 @@ exclude = [
 
 // test results reporter to use
 // possible values: dots || progress
-reporter = 'progress';
+//reporter = 'progress';
 //reporters = ['progress', 'coverage'];
+reporters = ['progress', 'coverage'];
 
 
-//preprocessors = {
-//    'app/scripts/controllers/*.js' : 'coverage',
-//    'app/scripts/directives/*.js' : 'coverage',
-//    'test/spec/**/*.js' : 'coverage'
-//};
-//
-//coverageReporter = {
-//    type : 'html',
-//    dir : 'coverage/'
-//};
+preprocessors = {
+    '**/app/scripts/controllers/*.js' : 'coverage',
+    '**/app/scripts/directives/*.js' : 'coverage',
+    '**/app/scripts/app.js' : 'coverage'
+};
 
+coverageReporter = {
+    type : 'html',
+    dir : 'coverage/'
+}
 // web server port
 port = 8080;
 

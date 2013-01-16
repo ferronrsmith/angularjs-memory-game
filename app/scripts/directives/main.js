@@ -1,4 +1,4 @@
-/*global testGameApp, $*/
+/*global testGameApp, $, angular*/
 
 var id, boxopened = "", currentopened = "", imgopened = "", msg, innerImg, count = 0, found = 0;
 
@@ -6,6 +6,7 @@ testGameApp.directive('openCard', function ($timeout, $log) {
     "use strict";
 
     return function (scope, elem, attrs) {
+
         elem.bind('click', function (e) {
             innerImg = $(elem).find('img');
 
