@@ -43,9 +43,9 @@ describe('JSON Loaded successfully', function () {
     });
 
     it('items in returned array are iterable', function () {
+        var value = scope.cards[0];
         expect(scope.cards).toBeUndefined();
         $httpBackend.flush();
-        var count = 0, value = scope.cards[0];
         expect(value.card.indexOf('image/')).toBeGreaterThan(-1);
         expect(value.card.lastIndexOf('.jpg')).toBeGreaterThan(-1);
     });

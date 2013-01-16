@@ -1,7 +1,7 @@
 /*global describe, beforeEach, inject, module, angular, document, it, expect, $, navigator, window, spyOn */
 describe('Testing OpenCard Directive', function () {
     "use strict";
-    var element, compile, scope, rootElement;
+    var element, compile, scope;
 
     beforeEach(module('testGameApp'));
 
@@ -20,7 +20,6 @@ describe('Testing OpenCard Directive', function () {
         scope.$apply();
 
     }));
-
 
     it('should have n image tags', function () {
         expect(element.find('img').length).toEqual(3);
@@ -103,7 +102,5 @@ describe('Testing OpenCard Directive', function () {
 
         expect(reset.html()).toEqual('Reset');
         expect(reset.click().html()).toEqual('Reset');
-
-
     }));
 });
