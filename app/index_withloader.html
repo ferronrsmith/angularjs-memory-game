@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <title></title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width"/>
+        <link rel="stylesheet" href="styles/main.css"/>
+        <script type="text/javascript" src="scripts/vendor/head.load.min.js"></script>
+        <script type="text/javascript">
+            head.js('components/jquery/jquery.js', function () {
+                head.js('scripts/vendor/angular.js', function () {
+                    head.js('scripts/app.js', 'scripts/controllers/main.js', 'scripts/directives/main.js', function () {
+                        angular.bootstrap(document, ['testGameApp'])
+                    });
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            /*
+             AngularJS v1.0.1
+             (c) 2010-2012 Google, Inc. http://angularjs.org
+             License: MIT
+             */
+            (function(i){'use strict';function d(c,b,e){return c[b]||(c[b]=e())}return d(d(i,"angular",Object),"module",function(){var c={};return function(b,e,f){e&&c.hasOwnProperty(b)&&(c[b]=null);return d(c,b,function(){function a(a,b,d){return function(){c[d||"push"]([a,b,arguments]);return g}}if(!e)throw Error("No module: "+b);var c=[],d=[],h=a("$injector","invoke"),g={_invokeQueue:c,_runBlocks:d,requires:e,name:b,provider:a("$provide","provider"),factory:a("$provide","factory"),service:a("$provide","service"),
+                value:a("$provide","value"),constant:a("$provide","constant","unshift"),filter:a("$filterProvider","register"),controller:a("$controllerProvider","register"),directive:a("$compileProvider","directive"),config:h,run:function(a){d.push(a);return this}};f&&h(f);return g})}})})(window);
+        </script>
+    </head>
+    <body>
+
+        <div id="boxbutton" ng-controller="MainCtrl ">
+                <span class="link">
+                    <span id="count">0</span>
+                    Click
+                </span>
+            &nbsp;
+            <a class="link" reset-game>Reset</a>
+        </div>
+        <!-- Add your site or application content here -->
+        <div class="container" ng-view></div>
+<!--
+        <script src="scripts/vendor/angular.js"></script>
+        <script src="components/jquery/jquery.js"></script> -->
+
+        <!-- build:js scripts/scripts.js --> <!--
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/directives/main.js"></script> -->
+        <!-- endbuild -->
+
+    </body>
+</html>
